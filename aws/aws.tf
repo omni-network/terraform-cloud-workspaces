@@ -59,18 +59,18 @@ resource "aws_iam_policy" "tfc_policy" {
   name        = "tfc-policy"
   description = "TFC run policy"
 
+  # aws admin policy - as it stands, blockscout terraform needs to be able to do everything, including creating iam roles
+  # TODO: can we scrutinize a bit
   policy = <<EOF
 {
- "Version": "2012-10-17",
- "Statement": [
-   {
-     "Effect": "Allow",
-     "Action": [
-       "s3:ListBucket"
-     ],
-     "Resource": "*"
-   }
- ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "*",
+            "Resource": "*"
+        }
+    ]
 }
 EOF
 }
